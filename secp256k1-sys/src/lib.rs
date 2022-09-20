@@ -439,8 +439,8 @@ extern "C" {
     pub fn secp256k1_get_keyimage(
         cx: *const Context,
         ki: *mut c_uchar,
-        pk: *const c_uchar,
-        sk: *const c_uchar,
+        pk:  *mut c_uchar,
+        sk:  *mut c_uchar,
     ) -> c_int;
 
     // ECDSA
