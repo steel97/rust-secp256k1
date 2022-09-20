@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "main_impl.h": "c",
-        "eckey.h": "c"
+        "eckey.h": "c",
+        "pedersen_impl.h": "c",
+        "rangeproof_impl.h": "c"
     }
 }

@@ -7,8 +7,6 @@
 #ifndef SECP256K1_MODULE_GENERATOR_MAIN
 #define SECP256K1_MODULE_GENERATOR_MAIN
 
-#include <stdio.h>
-
 #include "field.h"
 #include "group.h"
 #include "hash.h"
