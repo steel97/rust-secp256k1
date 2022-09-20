@@ -439,7 +439,7 @@ extern "C" {
     pub fn secp256k1_get_keyimage(
         cx: *const Context,
         ki: *mut c_uchar,
-        pk: *const PublicKey,
+        pk: *const c_uchar,
         sk: *const c_uchar,
     ) -> c_int;
 
