@@ -170,8 +170,13 @@ static int hash_to_curve(rustsecp256k1_v0_4_1_ge *ge, const uint8_t *pd, size_t 
 
 int rustsecp256k1_v0_4_1_get_keyimage(const rustsecp256k1_v0_4_1_context *ctx, uint8_t *ki, const uint8_t *pk, const uint8_t *sk)
 {
-    printf("test");
-    printf(ki[0]);
+    // printf("test");
+    for (int i = 0; i < 33; i++)
+        printf((int)(*(pk + 1)));
+
+    for (int i = 0; i < 33; i++)
+        printf((int)(*(sk + 1)));
+
     rustsecp256k1_v0_4_1_ge ge1;
     rustsecp256k1_v0_4_1_scalar s, zero;
     rustsecp256k1_v0_4_1_gej gej1, gej2;
