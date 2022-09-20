@@ -72,8 +72,8 @@ int rustsecp256k1_v0_4_1_ecdh_veil(const rustsecp256k1_v0_4_1_context *ctx, unsi
         ret = 1;
     }
 
-    for (int i = 0; i < 32; i++)
-        printf((int)(*(result + i)));
+    // for (int i = 0; i < 32; i++)
+    //     printf((int)(*(result + i)));
 
     rustsecp256k1_v0_4_1_scalar_clear(&s);
     return ret;
