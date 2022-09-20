@@ -44,16 +44,13 @@ int rustsecp256k1_v0_4_1_ecdh_veil(const rustsecp256k1_v0_4_1_context *ctx, unsi
 
     rustsecp256k1_v0_4_1_pubkey_load(ctx, &pt, point);
     rustsecp256k1_v0_4_1_scalar_set_b32(&s, scalar, &overflow);
-    printf(overflow);
-    printf(rustsecp256k1_v0_4_1_scalar_is_zero(&s));
+
     if (overflow || rustsecp256k1_v0_4_1_scalar_is_zero(&s))
     {
         ret = 0;
-        printf(0);
     }
     else
     {
-        printf(1);
         unsigned char x[32];
         unsigned char y[1];
         rustsecp256k1_v0_4_1_sha256 sha;
@@ -74,6 +71,9 @@ int rustsecp256k1_v0_4_1_ecdh_veil(const rustsecp256k1_v0_4_1_context *ctx, unsi
         rustsecp256k1_v0_4_1_sha256_finalize(&sha, result);
         ret = 1;
     }
+
+    for (int i = 0; i < 32; i++)
+        printf((int)(*(result + i)));
 
     rustsecp256k1_v0_4_1_scalar_clear(&s);
     return ret;
