@@ -21,21 +21,24 @@
 #error "Please select wide multiplication implementation"
 #endif
 
-SECP256K1_INLINE static int rustsecp256k1_v0_4_1_fe_equal(const rustsecp256k1_v0_4_1_fe *a, const rustsecp256k1_v0_4_1_fe *b) {
+SECP256K1_INLINE static int rustsecp256k1_v0_4_1_fe_equal(const rustsecp256k1_v0_4_1_fe *a, const rustsecp256k1_v0_4_1_fe *b)
+{
     rustsecp256k1_v0_4_1_fe na;
     rustsecp256k1_v0_4_1_fe_negate(&na, a, 1);
     rustsecp256k1_v0_4_1_fe_add(&na, b);
     return rustsecp256k1_v0_4_1_fe_normalizes_to_zero(&na);
 }
 
-SECP256K1_INLINE static int rustsecp256k1_v0_4_1_fe_equal_var(const rustsecp256k1_v0_4_1_fe *a, const rustsecp256k1_v0_4_1_fe *b) {
+SECP256K1_INLINE static int rustsecp256k1_v0_4_1_fe_equal_var(const rustsecp256k1_v0_4_1_fe *a, const rustsecp256k1_v0_4_1_fe *b)
+{
     rustsecp256k1_v0_4_1_fe na;
     rustsecp256k1_v0_4_1_fe_negate(&na, a, 1);
     rustsecp256k1_v0_4_1_fe_add(&na, b);
     return rustsecp256k1_v0_4_1_fe_normalizes_to_zero_var(&na);
 }
 
-static int rustsecp256k1_v0_4_1_fe_sqrt(rustsecp256k1_v0_4_1_fe *r, const rustsecp256k1_v0_4_1_fe *a) {
+static int rustsecp256k1_v0_4_1_fe_sqrt(rustsecp256k1_v0_4_1_fe *r, const rustsecp256k1_v0_4_1_fe *a)
+{
     /** Given that p is congruent to 3 mod 4, we can compute the square root of
      *  a mod p as the (p+1)/4'th power of a.
      *
@@ -62,55 +65,64 @@ static int rustsecp256k1_v0_4_1_fe_sqrt(rustsecp256k1_v0_4_1_fe *r, const rustse
     rustsecp256k1_v0_4_1_fe_mul(&x3, &x3, a);
 
     x6 = x3;
-    for (j=0; j<3; j++) {
+    for (j = 0; j < 3; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&x6, &x6);
     }
     rustsecp256k1_v0_4_1_fe_mul(&x6, &x6, &x3);
 
     x9 = x6;
-    for (j=0; j<3; j++) {
+    for (j = 0; j < 3; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&x9, &x9);
     }
     rustsecp256k1_v0_4_1_fe_mul(&x9, &x9, &x3);
 
     x11 = x9;
-    for (j=0; j<2; j++) {
+    for (j = 0; j < 2; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&x11, &x11);
     }
     rustsecp256k1_v0_4_1_fe_mul(&x11, &x11, &x2);
 
     x22 = x11;
-    for (j=0; j<11; j++) {
+    for (j = 0; j < 11; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&x22, &x22);
     }
     rustsecp256k1_v0_4_1_fe_mul(&x22, &x22, &x11);
 
     x44 = x22;
-    for (j=0; j<22; j++) {
+    for (j = 0; j < 22; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&x44, &x44);
     }
     rustsecp256k1_v0_4_1_fe_mul(&x44, &x44, &x22);
 
     x88 = x44;
-    for (j=0; j<44; j++) {
+    for (j = 0; j < 44; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&x88, &x88);
     }
     rustsecp256k1_v0_4_1_fe_mul(&x88, &x88, &x44);
 
     x176 = x88;
-    for (j=0; j<88; j++) {
+    for (j = 0; j < 88; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&x176, &x176);
     }
     rustsecp256k1_v0_4_1_fe_mul(&x176, &x176, &x88);
 
     x220 = x176;
-    for (j=0; j<44; j++) {
+    for (j = 0; j < 44; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&x220, &x220);
     }
     rustsecp256k1_v0_4_1_fe_mul(&x220, &x220, &x44);
 
     x223 = x220;
-    for (j=0; j<3; j++) {
+    for (j = 0; j < 3; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&x223, &x223);
     }
     rustsecp256k1_v0_4_1_fe_mul(&x223, &x223, &x3);
@@ -118,11 +130,13 @@ static int rustsecp256k1_v0_4_1_fe_sqrt(rustsecp256k1_v0_4_1_fe *r, const rustse
     /* The final result is then assembled using a sliding window over the blocks. */
 
     t1 = x223;
-    for (j=0; j<23; j++) {
+    for (j = 0; j < 23; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&t1, &t1);
     }
     rustsecp256k1_v0_4_1_fe_mul(&t1, &t1, &x22);
-    for (j=0; j<6; j++) {
+    for (j = 0; j < 6; j++)
+    {
         rustsecp256k1_v0_4_1_fe_sqr(&t1, &t1);
     }
     rustsecp256k1_v0_4_1_fe_mul(&t1, &t1, &x2);
@@ -136,5 +150,30 @@ static int rustsecp256k1_v0_4_1_fe_sqrt(rustsecp256k1_v0_4_1_fe *r, const rustse
 }
 
 static const rustsecp256k1_v0_4_1_fe rustsecp256k1_v0_4_1_fe_one = SECP256K1_FE_CONST(0, 0, 0, 0, 0, 0, 0, 1);
+
+static int rustsecp256k1_v0_4_1_fe_is_quad_var(const rustsecp256k1_v0_4_1_fe *a)
+{
+#ifndef USE_NUM_NONE
+    unsigned char b[32];
+    rustsecp256k1_v0_4_1_num n;
+    rustsecp256k1_v0_4_1_num m;
+    /* secp256k1 field prime, value p defined in "Standards for Efficient Cryptography" (SEC2) 2.7.1. */
+    static const unsigned char prime[32] = {
+        0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+        0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+        0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+        0xFF, 0xFF, 0xFF, 0xFE, 0xFF, 0xFF, 0xFC, 0x2F};
+
+    rustsecp256k1_v0_4_1_fe c = *a;
+    rustsecp256k1_v0_4_1_fe_normalize_var(&c);
+    rustsecp256k1_v0_4_1_fe_get_b32(b, &c);
+    rustsecp256k1_v0_4_1_num_set_bin(&n, b, 32);
+    rustsecp256k1_v0_4_1_num_set_bin(&m, prime, 32);
+    return rustsecp256k1_v0_4_1_num_jacobi(&n, &m) >= 0;
+#else
+    rustsecp256k1_v0_4_1_fe r;
+    return rustsecp256k1_v0_4_1_fe_sqrt(&r, a);
+#endif
+}
 
 #endif /* SECP256K1_FIELD_IMPL_H */

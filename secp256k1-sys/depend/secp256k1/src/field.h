@@ -32,6 +32,7 @@
 #error "Please select wide multiplication implementation"
 #endif
 
+static int rustsecp256k1_v0_4_1_fe_is_quad_var(const rustsecp256k1_v0_4_1_fe *a);
 /** Normalize a field element. This brings the field element to a canonical representation, reduces
  *  its magnitude to 1, and reduces it modulo field size `p`.
  */
@@ -90,7 +91,7 @@ static void rustsecp256k1_v0_4_1_fe_add(rustsecp256k1_v0_4_1_fe *r, const rustse
 
 /** Sets a field element to be the product of two others. Requires the inputs' magnitudes to be at most 8.
  *  The output magnitude is 1 (but not guaranteed to be normalized). */
-static void rustsecp256k1_v0_4_1_fe_mul(rustsecp256k1_v0_4_1_fe *r, const rustsecp256k1_v0_4_1_fe *a, const rustsecp256k1_v0_4_1_fe * SECP256K1_RESTRICT b);
+static void rustsecp256k1_v0_4_1_fe_mul(rustsecp256k1_v0_4_1_fe *r, const rustsecp256k1_v0_4_1_fe *a, const rustsecp256k1_v0_4_1_fe *SECP256K1_RESTRICT b);
 
 /** Sets a field element to be the square of another. Requires the input's magnitude to be at most 8.
  *  The output magnitude is 1 (but not guaranteed to be normalized). */
