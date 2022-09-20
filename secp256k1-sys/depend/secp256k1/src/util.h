@@ -25,6 +25,12 @@ static SECP256K1_INLINE void rustsecp256k1_v0_4_1_callback_call(const rustsecp25
     cb->fn(text, (void*)cb->data);
 }
 
+#define RETURN_ZERO(cond) do { \
+    if (EXPECT(!(cond), 0)) { \
+        return 0; \
+    } \
+} while(0)
+
 #ifdef DETERMINISTIC
 #define TEST_FAILURE(msg) do { \
     fprintf(stderr, "%s\n", msg); \

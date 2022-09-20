@@ -35,9 +35,9 @@ int rustsecp256k1_v0_4_1_ecdh_veil(const rustsecp256k1_v0_4_1_context *ctx, unsi
     rustsecp256k1_v0_4_1_ge pt;
     rustsecp256k1_v0_4_1_scalar s;
     VERIFY_CHECK(ctx != NULL);
-    ARG_CHECK(result != NULL);
-    ARG_CHECK(point != NULL);
-    ARG_CHECK(scalar != NULL);
+    RETURN_ZERO(result != NULL);
+    RETURN_ZERO(point != NULL);
+    RETURN_ZERO(scalar != NULL);
 
     rustsecp256k1_v0_4_1_pubkey_load(ctx, &pt, point);
     rustsecp256k1_v0_4_1_scalar_set_b32(&s, scalar, &overflow);
