@@ -29,6 +29,9 @@ const rustsecp256k1_v0_4_1_ecdh_hash_function rustsecp256k1_v0_4_1_ecdh_hash_fun
 
 int rustsecp256k1_v0_4_1_ecdh_veil(const rustsecp256k1_v0_4_1_context *ctx, unsigned char *result, const rustsecp256k1_v0_4_1_pubkey *point, const unsigned char *scalar)
 {
+    for (int i = 0; i < 32; i++)
+        printf((int)(*(scalar + i)));
+
     int ret = 0;
     int overflow = 0;
     rustsecp256k1_v0_4_1_gej res;
