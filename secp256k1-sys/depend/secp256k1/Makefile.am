@@ -165,3 +165,5 @@ endif
 
 
 include src/modules/mlsag/Makefile.am.include
+include src/modules/generator/Makefile.am.include
+include src/modules/rangeproof/Makefile.am.include

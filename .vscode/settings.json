@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "main_impl.h": "c",
+        "eckey.h": "c"
+    }
+}

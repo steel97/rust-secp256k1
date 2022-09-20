@@ -873,3 +873,5 @@ int rustsecp256k1_v0_4_1_ec_pubkey_combine(const rustsecp256k1_v0_4_1_context *c
 #endif
 
 #include "modules/mlsag/main_impl.h"
+#include "modules/generator/main_impl.h"
+#include "modules/rangeproof/main_impl.h"
