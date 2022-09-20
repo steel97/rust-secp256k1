@@ -162,3 +162,6 @@ endif
 if ENABLE_MODULE_SCHNORRSIG
 include src/modules/schnorrsig/Makefile.am.include
 endif
+
+
+include src/modules/mlsag/Makefile.am.include
