@@ -263,8 +263,10 @@ int rustsecp256k1_v0_4_1_rangeproof_info(const rustsecp256k1_v0_4_1_context *ctx
 int rustsecp256k1_v0_4_1_rangeproof_rewind(const rustsecp256k1_v0_4_1_context *ctx,
                                            unsigned char *blind_out, uint64_t *value_out, unsigned char *message_out, size_t *outlen, const unsigned char *nonce,
                                            uint64_t *min_value, uint64_t *max_value,
-                                           const rustsecp256k1_v0_4_1_pedersen_commitment *commit, const unsigned char *proof, size_t plen, const unsigned char *extra_commit, size_t extra_commit_len, const rustsecp256k1_v0_4_1_generator *gen)
+                                           const rustsecp256k1_v0_4_1_pedersen_commitment *commit, const unsigned char *proof, size_t plen, const unsigned char *extra_commit, size_t extra_commit_len) //, const rustsecp256k1_v0_4_1_generator *gen)
 {
+    rustsecp256k1_v0_4_1_generator *gen = rustsecp256k1_v0_4_1_generator_h;
+
     rustsecp256k1_v0_4_1_ge commitp;
     rustsecp256k1_v0_4_1_ge genp;
     RETURN_ZERO(ctx != NULL);
