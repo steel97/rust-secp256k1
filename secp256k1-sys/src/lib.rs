@@ -433,6 +433,14 @@ extern "C" {
         data: *mut c_void,
     ) -> c_int;
 
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_ecdh_veil")]
+    pub fn secp256k1_ecdh_veil(
+        cx: *const Context,
+        output: *mut c_uchar,
+        pubkey: *const PublicKey,
+        seckey: *const c_uchar,
+    ) -> c_int;
+
     // MLSAG
     //(const rustsecp256k1_v0_4_1_context *ctx, uint8_t *ki, const uint8_t *pk, const uint8_t *sk)
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_get_keyimage")]
