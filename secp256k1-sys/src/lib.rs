@@ -471,6 +471,16 @@ extern "C" {
         data: *mut c_void,
     ) -> c_int;
 
+    // MLSAG
+    //(const rustsecp256k1_v0_5_0_context *ctx, uint8_t *ki, const uint8_t *pk, const uint8_t *sk)
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_5_0_get_keyimage")]
+    pub fn secp256k1_get_keyimage(
+        cx: *const Context,
+        ki: *mut c_uchar,
+        pk: *const PublicKey,
+        sk: *const c_uchar,
+    ) -> c_int;
+
     // ECDSA
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_5_0_ecdsa_verify")]
     pub fn secp256k1_ecdsa_verify(cx: *const Context,
