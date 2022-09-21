@@ -642,6 +642,10 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_getheader_impl(size_
     {
         printf(4433);
     }
+    if (*max_value == 4294967295000000)
+    {
+        printf(3355);
+    }
     return 1;
 }
 
@@ -672,22 +676,22 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_verify_impl(const ru
     unsigned char m[33];
     const unsigned char *e0;
     offset = 0;
-    printf(1010);
+    /*printf(1010);
     printf(plen);
     printf(*min_value);
-    printf(*max_value);
+    printf(*max_value);*/
 
     if (!rustsecp256k1_v0_4_1_rangeproof_getheader_impl(&offset, &exp, &mantissa, &scale, min_value, max_value, proof, plen))
     {
         return 0;
     }
-    printf(2020);
+    /*printf(2020);
     printf(*min_value);
     printf(*max_value);
     printf(scale);
     printf(exp);
     printf(mantissa);
-    printf(offset);
+    printf(offset);*/
 
     offset_post_header = offset;
     rings = 1;
@@ -817,7 +821,8 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_verify_impl(const ru
         {
             rustsecp256k1_v0_4_1_scalar_get_b32(blindout, &blind);
         }
-        printf(vv);
+        printf(1041197);
+        printf((vv / 100000000));
         if (value_out)
         {
             *value_out = vv;
