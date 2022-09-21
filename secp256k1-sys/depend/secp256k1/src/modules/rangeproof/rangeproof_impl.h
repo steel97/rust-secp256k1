@@ -656,8 +656,7 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_verify_impl(const ru
     printf(1010);
     printf(*min_value);
     printf(*max_value);
-    for (int i = 0; i < 40; i++)
-        printf((int)(*(proof + i)));
+
     if (!rustsecp256k1_v0_4_1_rangeproof_getheader_impl(&offset, &exp, &mantissa, &scale, min_value, max_value, proof, plen))
     {
         return 0;

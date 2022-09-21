@@ -205,8 +205,9 @@ extern "C"
         const unsigned char *proof,
         size_t plen,
         const unsigned char *extra_commit,
-        size_t extra_commit_len,
-        const rustsecp256k1_v0_4_1_generator *gen) SECP256K1_ARG_NONNULL(1) SECP256K1_ARG_NONNULL(6) SECP256K1_ARG_NONNULL(7) SECP256K1_ARG_NONNULL(8) SECP256K1_ARG_NONNULL(9) SECP256K1_ARG_NONNULL(10) SECP256K1_ARG_NONNULL(14);
+        size_t extra_commit_len /*,
+         const rustsecp256k1_v0_4_1_generator *gen*/
+        ) SECP256K1_ARG_NONNULL(1) SECP256K1_ARG_NONNULL(6) SECP256K1_ARG_NONNULL(7) SECP256K1_ARG_NONNULL(8) SECP256K1_ARG_NONNULL(9) SECP256K1_ARG_NONNULL(10);
 
     /** Author a proof that a committed value is within a range.
      *  Returns 1: Proof successfully created.
