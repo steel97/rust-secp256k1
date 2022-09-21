@@ -589,6 +589,7 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_getheader_impl(size_
         }
         printf(9090);
         *max_value = UINT64_MAX >> (64 - *mantissa);
+        printf(*max_value);
     }
     else
     {
@@ -606,6 +607,7 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_getheader_impl(size_
         printf(9092);
         *max_value *= 10;
         *scale *= 10;
+        printf(*max_value);
     }
     *min_value = 0;
     if (has_min)
