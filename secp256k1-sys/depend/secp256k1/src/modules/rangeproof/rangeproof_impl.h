@@ -653,18 +653,16 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_verify_impl(const ru
     unsigned char m[33];
     const unsigned char *e0;
     offset = 0;
-    *min_value = 0;
-    *max_value = 0;
     printf(1010);
-    printf(min_value);
-    printf(max_value);
+    printf(*min_value);
+    printf(*max_value);
     if (!rustsecp256k1_v0_4_1_rangeproof_getheader_impl(&offset, &exp, &mantissa, &scale, min_value, max_value, proof, plen))
     {
         return 0;
     }
     printf(2020);
-    printf(min_value);
-    printf(max_value);
+    printf(*min_value);
+    printf(*max_value);
     offset_post_header = offset;
     rings = 1;
     rsizes[0] = 1;
