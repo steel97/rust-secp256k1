@@ -574,6 +574,12 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_getheader_impl(size_
     has_min = proof[*offset] & 32;
     *exp = -1;
     *mantissa = 0;
+
+    printf(6060);
+    printf(*offset);
+    printf(5050);
+    printf(proof[*offset]);
+
     if (has_nz_range)
     {
         *exp = proof[*offset] & 31;
