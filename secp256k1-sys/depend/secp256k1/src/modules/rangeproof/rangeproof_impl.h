@@ -754,14 +754,6 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_verify_impl(const ru
     }
     rustsecp256k1_v0_4_1_sha256_finalize(&sha256_m, m);
     ret = rustsecp256k1_v0_4_1_borromean_verify(ecmult_ctx, nonce ? evalues : NULL, e0, s, pubs, rsizes, rings, m, 32);
-    if (ret)
-    {
-        printf(321);
-    }
-    if (nonce)
-    {
-        printf(555);
-    }
     if (ret && nonce)
     {
         /* Given the nonce, try rewinding the witness to recover its initial state. */
@@ -799,8 +791,6 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_verify_impl(const ru
             *value_out = vv;
         }
     }
-    printf(123);
-    printf(ret);
     return ret;
 }
 
