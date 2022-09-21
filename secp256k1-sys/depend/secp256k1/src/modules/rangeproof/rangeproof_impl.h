@@ -785,10 +785,10 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_verify_impl(const ru
         {
             rustsecp256k1_v0_4_1_scalar_get_b32(blindout, &blind);
         }
+        printf(vv);
         if (value_out)
         {
             *value_out = vv;
-            printf(vv);
         }
     }
     return ret;
