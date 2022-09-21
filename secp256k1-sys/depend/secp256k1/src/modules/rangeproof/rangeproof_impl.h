@@ -664,6 +664,7 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_verify_impl(const ru
     printf(2020);
     printf(*min_value);
     printf(*max_value);
+    *max_value = 4294967295000000;
     offset_post_header = offset;
     rings = 1;
     rsizes[0] = 1;
