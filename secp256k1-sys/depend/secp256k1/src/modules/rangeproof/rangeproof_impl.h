@@ -748,7 +748,7 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_verify_impl(const ru
         /*Extra data found, reject.*/
         return 0;
     }
-    if (extra_commit != NULL)
+    if (extra_commit != NULL || extra_commit_len == 0)
     {
         rustsecp256k1_v0_4_1_sha256_write(&sha256_m, extra_commit, extra_commit_len);
     }
