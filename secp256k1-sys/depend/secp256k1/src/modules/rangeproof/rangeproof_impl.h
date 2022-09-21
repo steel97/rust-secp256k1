@@ -633,7 +633,11 @@ SECP256K1_INLINE static int rustsecp256k1_v0_4_1_rangeproof_getheader_impl(size_
     {
         return 0;
     }
+    printf(8787);
+    printf(*max_value);
     *max_value += *min_value;
+    printf(7777);
+    printf(*max_value);
     return 1;
 }
 
