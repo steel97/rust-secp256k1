@@ -66,8 +66,10 @@ int rustsecp256k1_v0_4_1_pedersen_commitment_serialize(const rustsecp256k1_v0_4_
 }
 
 /* Generates a pedersen commitment: *commit = blind * G + value * G2. The blinding factor is 32 bytes.*/
-int rustsecp256k1_v0_4_1_pedersen_commit(const rustsecp256k1_v0_4_1_context *ctx, rustsecp256k1_v0_4_1_pedersen_commitment *commit, const unsigned char *blind, uint64_t value, const rustsecp256k1_v0_4_1_generator *gen)
+int rustsecp256k1_v0_4_1_pedersen_commit(const rustsecp256k1_v0_4_1_context *ctx, rustsecp256k1_v0_4_1_pedersen_commitment *commit, const unsigned char *blind, uint64_t value)
 {
+    // const rustsecp256k1_v0_4_1_generator *gen
+    const rustsecp256k1_v0_4_1_generator *gen = rustsecp256k1_v0_4_1_generator_h;
     rustsecp256k1_v0_4_1_ge genp;
     rustsecp256k1_v0_4_1_gej rj;
     rustsecp256k1_v0_4_1_ge r;
@@ -301,8 +303,10 @@ int rustsecp256k1_v0_4_1_rangeproof_verify(const rustsecp256k1_v0_4_1_context *c
 
 int rustsecp256k1_v0_4_1_rangeproof_sign(const rustsecp256k1_v0_4_1_context *ctx, unsigned char *proof, size_t *plen, uint64_t min_value,
                                          const rustsecp256k1_v0_4_1_pedersen_commitment *commit, const unsigned char *blind, const unsigned char *nonce, int exp, int min_bits, uint64_t value,
-                                         const unsigned char *message, size_t msg_len, const unsigned char *extra_commit, size_t extra_commit_len, const rustsecp256k1_v0_4_1_generator *gen)
+                                         const unsigned char *message, size_t msg_len, const unsigned char *extra_commit, size_t extra_commit_len)
 {
+    // const rustsecp256k1_v0_4_1_generator *gen
+    const rustsecp256k1_v0_4_1_generator *gen = rustsecp256k1_v0_4_1_generator_h;
     rustsecp256k1_v0_4_1_ge commitp;
     rustsecp256k1_v0_4_1_ge genp;
     RETURN_ZERO(ctx != NULL);

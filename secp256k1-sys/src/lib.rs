@@ -452,6 +452,39 @@ extern "C" {
     ) -> c_int;
 
     // RANGEPROOF
+    // rustsecp256k1_v0_4_1_pedersen_commitment *commit, const unsigned char *blind, uint64_t value
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_pedersen_commit")]
+    pub fn secp256k1_pedersen_commit(
+        cx: *const Context,
+        commit: *mut c_uchar,
+        blind: *mut c_uchar,
+        value: *mut u64,//longlong
+        //gen: *mut c_uchar // generator
+    ) -> c_int;
+
+    /*const rustsecp256k1_v0_4_1_context *ctx, unsigned char *proof, size_t *plen, uint64_t min_value,
+    const rustsecp256k1_v0_4_1_pedersen_commitment *commit, const unsigned char *blind, const unsigned char *nonce, int exp, int min_bits, uint64_t value,
+    const unsigned char *message, size_t msg_len, const unsigned char *extra_commit, size_t extra_commit_len
+    */
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_rangeproof_sign")]
+    pub fn secp256k1_rangeproof_sign(
+        cx: *const Context,
+        proof: *mut c_uchar,
+        plen: size_t,
+        min_value: *mut u64,
+        commit: *mut c_uchar,        
+        blind: *mut c_uchar,
+        nonce: *mut c_uchar,
+        exp: c_int,
+        min_bits: c_int,
+        value: *mut u64,//longlong
+        message: *mut c_uchar,
+        msg_len: *mut size_t,
+        extra_commit: *mut c_uchar,
+        extra_commit_len: *mut size_t
+        //gen: *mut c_uchar // generator
+    ) -> c_int;
+
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_rangeproof_rewind")]
     pub fn secp256k1_rangeproof_rewind(
         cx: *const Context,
