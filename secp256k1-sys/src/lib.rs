@@ -458,7 +458,7 @@ extern "C" {
         cx: *const Context,
         commit: *mut c_uchar,
         blind: *mut c_uchar,
-        value: *mut u64,//longlong
+        value: u64,//longlong
         //gen: *mut c_uchar // generator
     ) -> c_int;
 
