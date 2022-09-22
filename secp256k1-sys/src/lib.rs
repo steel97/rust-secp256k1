@@ -470,7 +470,7 @@ extern "C" {
     pub fn secp256k1_rangeproof_sign(
         cx: *const Context,
         proof: *mut c_uchar,
-        plen: *mut size_t,
+        plen: *mut u32,//size_t
         min_value: u64,
         commit: *mut c_uchar,        
         blind: *mut c_uchar,
