@@ -125,6 +125,11 @@ int rustsecp256k1_v0_4_1_prepare_mlsag(unsigned char *ebuf1, unsigned char *ebuf
             continue;
         };
         rustsecp256k1_v0_4_1_ge_set_gej(&c, &accj);
+        printf(882222);
+        printf(k);
+        printf(nCols);
+        printf(nIns);
+        printf(992222);
         rustsecp256k1_v0_4_1_eckey_pubkey_serialize(&c, &m[(k + nCols * nIns) * 33], &s, 1);
         /* pedersen_commitment_save(&m[(k+nCols*nIns)*33], &c); */
     };
