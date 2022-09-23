@@ -59,6 +59,8 @@ int rustsecp256k1_v0_4_1_prepare_mlsag(uint8_t *m, uint8_t *sk,
     {
         blinds[i] = blinds_or + (i * 32);
     }
+
+    printf(99494949494);
     /*
         Last matrix row is sum of input commitments - sum of output commitments
 
