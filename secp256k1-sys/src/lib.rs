@@ -490,6 +490,7 @@ extern "C" {
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_pedersen_blind_sum")]
     pub fn secp256k1_pedersen_blind_sum(
         cx: *const Context,
+        ebuf1: *mut c_uchar,
         blind_out: *mut c_uchar,
         blinds_size: size_t,
         blinds: *mut c_uchar,//size_t
@@ -503,6 +504,9 @@ extern "C" {
     // m (buffer, return), sk (buffer, return), pcm_in(pointer to a pointer const), pcm_out(pointer to a pointer const), blinds (pointer to a pointer const) *mut *mut
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_prepare_mlsag")]
     pub fn secp256k1_prepare_mlsag(
+        ebuf1: *mut c_uchar,
+        ebuf2: *mut c_uchar,
+        ebuf3: *mut c_uchar,
         m: *mut c_uchar,
         sk: *mut c_uchar,
         nOuts: size_t,
@@ -528,6 +532,7 @@ extern "C" {
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_generate_mlsag")]
     pub fn secp256k1_generate_mlsag(
         cx: *const Context,
+        ebuf1: *mut c_uchar,
         ki: *mut c_uchar,
         pc: *mut c_uchar,
         ps: *mut c_uchar,
