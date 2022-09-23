@@ -107,7 +107,7 @@ int rustsecp256k1_v0_4_1_pedersen_commit(const rustsecp256k1_v0_4_1_context *ctx
 int rustsecp256k1_v0_4_1_pedersen_blind_sum(const rustsecp256k1_v0_4_1_context *ctx, unsigned char *blind_out, size_t blinds_size, const unsigned char *blinds_or, size_t n, size_t npositive)
 {
     // const unsigned char *const *blinds
-    unsigned char **blinds;
+    unsigned char **blinds = (unsigned char **)malloc(blinds_size * sizeof(unsigned char));
     for (int i = 0; i < blinds_size; i++)
     {
         blinds[i] = blinds_or + (i * 32);

@@ -42,21 +42,23 @@ int rustsecp256k1_v0_4_1_prepare_mlsag(uint8_t *m, uint8_t *sk,
     // prepare pcm_in (33 bytes)
     printf(9949494949411);
     printf(vpInCommitsLen);
-    uint8_t **pcm_in; // = &pcm_in_or;
+    // char **ppi = (char**)malloc(2*sizeof(char));
+    uint8_t **pcm_in = (uint8_t **)malloc(vpInCommitsLen * sizeof(uint8_t));
     for (int i = 0; i < vpInCommitsLen; i++)
     {
         pcm_in[i] = pcm_in_or + (i * 33);
+        printf(i);
     }
     printf(nOuts);
     // prepare pcm_out
-    uint8_t **pcm_out;
+    uint8_t **pcm_out = (uint8_t **)malloc(nOuts * sizeof(uint8_t));
     for (int i = 0; i < nOuts; i++)
     {
         pcm_out[i] = pcm_out_or + (i * 33);
     }
     printf(vpBlindsLen);
     // prepare blinds
-    uint8_t **blinds;
+    uint8_t **blinds = (uint8_t **)malloc(vpBlindsLen * sizeof(uint8_t));
     for (int i = 0; i < vpBlindsLen; i++)
     {
         blinds[i] = blinds_or + (i * 32);
@@ -232,7 +234,7 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
 {
 
     // prepare blinds
-    uint8_t **sk;
+    uint8_t **sk = (uint8_t **)malloc(sk_size * sizeof(uint8_t));
     for (int i = 0; i < sk_size; i++)
     {
         sk[i] = sk_or + (i * 32);
