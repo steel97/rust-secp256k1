@@ -371,6 +371,9 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
 
             if (!rustsecp256k1_v0_4_1_eckey_pubkey_parse(&ge1, &pk[(i + k * nCols) * 33], 33))
             {
+                printf(i);
+                printf(k);
+                printf(nCols);
                 printf(1000);
                 return 1;
             }
