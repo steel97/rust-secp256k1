@@ -40,19 +40,21 @@ int rustsecp256k1_v0_4_1_prepare_mlsag(uint8_t *m, uint8_t *sk,
                                        const uint8_t *pcm_in_or, const uint8_t *pcm_out_or, const uint8_t *blinds_or)
 {
     // prepare pcm_in (33 bytes)
+    printf(9949494949411);
+    printf(vpInCommitsLen);
     uint8_t **pcm_in; // = &pcm_in_or;
     for (int i = 0; i < vpInCommitsLen; i++)
     {
         pcm_in[i] = pcm_in_or + (i * 33);
     }
-
+    printf(nOuts);
     // prepare pcm_out
     uint8_t **pcm_out;
     for (int i = 0; i < nOuts; i++)
     {
         pcm_out[i] = pcm_out_or + (i * 33);
     }
-
+    printf(vpBlindsLen);
     // prepare blinds
     uint8_t **blinds;
     for (int i = 0; i < vpBlindsLen; i++)
