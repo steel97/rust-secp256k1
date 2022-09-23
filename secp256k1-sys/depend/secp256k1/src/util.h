@@ -215,7 +215,7 @@ static SECP256K1_INLINE void *manual_alloc(void **prealloc_ptr, size_t alloc_siz
 #error Please make sure that either SECP256K1_LITTLE_ENDIAN or SECP256K1_BIG_ENDIAN is set, see src/util.h.
 #endif
 
-SECP256K1_INLINE static int secp256k1_clz64_var(uint64_t x)
+SECP256K1_INLINE static int rustsecp256k1_v0_4_1_clz64_var(uint64_t x)
 {
     int ret;
     if (!x)
