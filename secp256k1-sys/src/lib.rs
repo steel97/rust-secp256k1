@@ -485,6 +485,70 @@ extern "C" {
         //gen: *mut c_uchar // generator
     ) -> c_int;
 
+    //unsigned char *blind_out, const unsigned char *const *blinds, size_t n, size_t npositive
+    //blind_out (return), blinds (const), 
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_pedersen_blind_sum")]
+    pub fn secp256k1_pedersen_blind_sum(
+        cx: *const Context,
+        blind_out: *mut c_uchar,
+        blinds: *mut c_uchar,//size_t
+        n: size_t,
+        npositive: size_t
+    ) -> c_int;
+    /*
+    uint8_t *m, uint8_t *sk, size_t nOuts, size_t nBlinded, size_t nCols, size_t nRows,
+    const uint8_t **pcm_in, const uint8_t **pcm_out, const uint8_t **blinds
+    */
+    // m (buffer, return), sk (buffer, return), pcm_in(pointer to a pointer const), pcm_out(pointer to a pointer const), blinds (pointer to a pointer const) *mut *mut
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_prepare_mlsag")]
+    pub fn secp256k1_prepare_mlsag(
+        m: *mut c_uchar,
+        sk: *mut c_uchar,
+        pcm_in: *mut *mut c_uchar,
+        pcm_out: *mut *mut c_uchar,
+        blinds: *mut *mut c_uchar
+    ) -> c_int;
+
+    /*
+    const rustsecp256k1_v0_4_1_context *ctx,
+    uint8_t *ki, uint8_t *pc, uint8_t *ps,
+    const uint8_t *nonce, const uint8_t *preimage, size_t nCols,
+    size_t nRows, size_t index, const uint8_t **sk, const uint8_t *pk)
+    */
+    // ki (return), pc (return), ps (return)
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_generate_mlsag")]
+    pub fn secp256k1_generate_mlsag(
+        cx: *const Context,
+        ki: *mut c_uchar,
+        pc: *mut c_uchar,
+        ps: *mut c_uchar,
+        nonce: *mut c_uchar,
+        preimage: *mut c_uchar,
+        nCols: size_t,
+        nRows: size_t,
+        index: size_t,
+        sk: *mut *mut c_uchar,
+        pk: *mut c_uchar
+    ) -> c_int;
+
+    /*
+    const rustsecp256k1_v0_4_1_context *ctx,
+    const uint8_t *preimage, size_t nCols, size_t nRows,
+    const uint8_t *pk, const uint8_t *ki, const uint8_t *pc, const uint8_t *ps
+    */
+    // everything const, only return matter
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_verify_mlsag")]
+    pub fn secp256k1_verify_mlsag(
+        cx: *const Context,
+        preimage: *mut c_uchar,
+        nCols: size_t,
+        nRows: size_t,
+        pk: *mut c_uchar,
+        ki: *mut c_uchar,
+        pc: *mut c_uchar,
+        ps: *mut c_uchar
+    ) -> c_int;
+
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_rangeproof_rewind")]
     pub fn secp256k1_rangeproof_rewind(
         cx: *const Context,
