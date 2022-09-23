@@ -104,8 +104,15 @@ int rustsecp256k1_v0_4_1_pedersen_commit(const rustsecp256k1_v0_4_1_context *ctx
 /** Takes a list of n pointers to 32 byte blinding values, the first negs of which are treated with positive sign and the rest
  *  negative, then calculates an additional blinding value that adds to zero.
  */
-int rustsecp256k1_v0_4_1_pedersen_blind_sum(const rustsecp256k1_v0_4_1_context *ctx, unsigned char *blind_out, const unsigned char *const *blinds, size_t n, size_t npositive)
+int rustsecp256k1_v0_4_1_pedersen_blind_sum(const rustsecp256k1_v0_4_1_context *ctx, unsigned char *blind_out, size_t blinds_size, const unsigned char *blinds_or, size_t n, size_t npositive)
 {
+    // const unsigned char *const *blinds
+    unsigned char **blinds;
+    for (int i = 0; i < blinds_size; i++)
+    {
+        blinds[i] = blinds_or + (i * 32);
+    }
+
     rustsecp256k1_v0_4_1_scalar acc;
     rustsecp256k1_v0_4_1_scalar x;
     size_t i;

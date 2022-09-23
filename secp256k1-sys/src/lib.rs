@@ -485,12 +485,13 @@ extern "C" {
         //gen: *mut c_uchar // generator
     ) -> c_int;
 
-    //unsigned char *blind_out, const unsigned char *const *blinds, size_t n, size_t npositive
+    //unsigned char *blind_out, size_t blinds_size, const unsigned char *const *blinds, size_t n, size_t npositive
     //blind_out (return), blinds (const), 
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_pedersen_blind_sum")]
     pub fn secp256k1_pedersen_blind_sum(
         cx: *const Context,
         blind_out: *mut c_uchar,
+        blinds_size: size_t,
         blinds: *mut c_uchar,//size_t
         n: size_t,
         npositive: size_t

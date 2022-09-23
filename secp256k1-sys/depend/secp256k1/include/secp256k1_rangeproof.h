@@ -73,7 +73,8 @@ extern "C"
     SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int rustsecp256k1_v0_4_1_pedersen_blind_sum(
         const rustsecp256k1_v0_4_1_context *ctx,
         unsigned char *blind_out,
-        const unsigned char *const *blinds,
+        size_t blinds_size,
+        const unsigned char *blinds,
         size_t n,
         size_t npositive) SECP256K1_ARG_NONNULL(1) SECP256K1_ARG_NONNULL(2) SECP256K1_ARG_NONNULL(3);
 
