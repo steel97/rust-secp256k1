@@ -36,9 +36,29 @@ static int load_ge(rustsecp256k1_v0_4_1_ge *ge, const uint8_t *data, size_t len)
 }
 
 int rustsecp256k1_v0_4_1_prepare_mlsag(uint8_t *m, uint8_t *sk,
-                                       size_t nOuts, size_t nBlinded, size_t nCols, size_t nRows,
-                                       const uint8_t **pcm_in, const uint8_t **pcm_out, const uint8_t **blinds)
+                                       size_t nOuts, size_t nBlinded, /* added */ size_t vpInCommitsLen, size_t vpBlindsLen, /* end */ size_t nCols, size_t nRows,
+                                       const uint8_t *pcm_in_or, const uint8_t *pcm_out_or, const uint8_t *blinds_or)
 {
+    // prepare pcm_in (33 bytes)
+    uint8_t **pcm_in; // = &pcm_in_or;
+    for (int i = 0; i < vpInCommitsLen; i++)
+    {
+        pcm_in[i] = pcm_in_or + (i * 33);
+    }
+
+    // prepare pcm_out
+    uint8_t **pcm_out;
+    for (int i = 0; i < nOuts; i++)
+    {
+        pcm_out[i] = pcm_out_or + (i * 33);
+    }
+
+    // prepare blinds
+    uint8_t **blinds;
+    for (int i = 0; i < vpBlindsLen; i++)
+    {
+        blinds[i] = blinds_or + (i * 32);
+    }
     /*
         Last matrix row is sum of input commitments - sum of output commitments
 
@@ -204,8 +224,16 @@ int rustsecp256k1_v0_4_1_get_keyimage(const rustsecp256k1_v0_4_1_context *ctx, u
 int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
                                         uint8_t *ki, uint8_t *pc, uint8_t *ps,
                                         const uint8_t *nonce, const uint8_t *preimage, size_t nCols,
-                                        size_t nRows, size_t index, const uint8_t **sk, const uint8_t *pk)
+                                        size_t nRows, size_t index, size_t sk_size, const uint8_t *sk_or, const uint8_t *pk)
 {
+
+    // prepare blinds
+    uint8_t **sk;
+    for (int i = 0; i < sk_size; i++)
+    {
+        sk[i] = sk_or + (i * 32);
+    }
+
     /* nRows == nInputs + 1, last row sums commitments
      */
 

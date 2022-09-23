@@ -504,9 +504,17 @@ extern "C" {
     pub fn secp256k1_prepare_mlsag(
         m: *mut c_uchar,
         sk: *mut c_uchar,
-        pcm_in: *mut *mut c_uchar,
-        pcm_out: *mut *mut c_uchar,
-        blinds: *mut *mut c_uchar
+        nOuts: size_t,
+        nBlinded: size_t,
+        // added
+        vpInCommitsLen: size_t,
+        vpBlindsLen: size_t,
+        // end
+        nCols: size_t,
+        nRows: size_t,
+        pcm_in: *mut c_uchar,
+        pcm_out: *mut c_uchar,
+        blinds: *mut c_uchar
     ) -> c_int;
 
     /*
@@ -527,7 +535,8 @@ extern "C" {
         nCols: size_t,
         nRows: size_t,
         index: size_t,
-        sk: *mut *mut c_uchar,
+        sk_size: size_t,
+        sk: *mut c_uchar,
         pk: *mut c_uchar
     ) -> c_int;
 
