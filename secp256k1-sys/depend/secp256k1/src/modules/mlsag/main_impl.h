@@ -534,6 +534,7 @@ int rustsecp256k1_v0_4_1_verify_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
     rustsecp256k1_v0_4_1_scalar_negate(&cSig, &cSig);
     rustsecp256k1_v0_4_1_scalar_add(&zero, &clast, &cSig);
 
+    printf(rustsecp256k1_v0_4_1_scalar_is_zero(&zero));
     return rustsecp256k1_v0_4_1_scalar_is_zero(&zero) ? 0 : 8; /* return 0 on success, 2 on failure */
 }
 
