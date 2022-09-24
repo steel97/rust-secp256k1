@@ -237,8 +237,6 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
     {
         sk[i] = sk_or + (i * 32);
     }
-    printf("123456789");
-    printf(index);
     /* nRows == nInputs + 1, last row sums commitments
      */
 
@@ -430,8 +428,6 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
                                                    preimage, nCols, nRows,
                                                    pk, ki, pc, ps);
 
-    printf(8888888);
-    printf(verres);
     return 0;
 }
 
@@ -541,12 +537,6 @@ int rustsecp256k1_v0_4_1_verify_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
     rustsecp256k1_v0_4_1_scalar_negate(&cSig, &cSig);
     rustsecp256k1_v0_4_1_scalar_add(&zero, &clast, &cSig);
 
-    printf(1234567);
-    printf(rustsecp256k1_v0_4_1_scalar_is_zero(&zero));
-
-    // int returned = rustsecp256k1_v0_4_1_scalar_is_zero(&zero);
-    int testres = zero.d[0] | zero.d[1] | zero.d[2] | zero.d[3] | zero.d[4] | zero.d[5] | zero.d[6] | zero.d[7];
-    printf(testres);
     return rustsecp256k1_v0_4_1_scalar_is_zero(&zero) ? 0 : 8; /* return 0 on success, 2 on failure */
 }
 

@@ -582,6 +582,19 @@ extern "C" {
         //gen: *mut c_uchar // generator
     ) -> c_int;
 
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_rangeproof_verify")]
+    pub fn secp256k1_rangeproof_verify(
+        cx: *const Context,
+        min_value:  *mut u64, //longlong
+        max_value:  *mut u64, // longlong
+        commit: *mut c_uchar, // rustsecp256k1_v0_4_1_pedersen_commitment
+        proof: *mut c_uchar,
+        plen: size_t, // without *
+        extra_commit: *mut c_uchar,
+        extra_commit_len: size_t, //without * 
+        //gen: *mut c_uchar // generator
+    ) -> c_int;
+
     // ECDSA
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_ecdsa_verify")]
     pub fn secp256k1_ecdsa_verify(cx: *const Context,
