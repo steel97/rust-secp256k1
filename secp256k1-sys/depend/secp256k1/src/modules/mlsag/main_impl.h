@@ -238,6 +238,10 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
         sk[i] = sk_or + (i * 32);
     }
 
+    printf(939393);
+    printf(sk[0][0]);
+    printf(sk[0][31]);
+
     /* nRows == nInputs + 1, last row sums commitments
      */
 
