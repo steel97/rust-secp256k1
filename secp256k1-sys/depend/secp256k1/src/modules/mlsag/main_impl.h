@@ -482,18 +482,12 @@ int rustsecp256k1_v0_4_1_verify_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
             rustsecp256k1_v0_4_1_gej_set_ge(&gej1, &ge1);
             rustsecp256k1_v0_4_1_ecmult(&ctx->ecmult_ctx, &gej1, &gej1, &ss, &zero); /* gej1 = H(pk[k][i]) * ss */
 
-            printf(12345);
-            printf(rustsecp256k1_v0_4_1_scalar_is_zero(&zero));
-
             if (!rustsecp256k1_v0_4_1_eckey_pubkey_parse(&ge1, &ki[k * 33], 33))
             {
                 return 4;
             }
             rustsecp256k1_v0_4_1_gej_set_ge(&gej2, &ge1);
             rustsecp256k1_v0_4_1_ecmult(&ctx->ecmult_ctx, &gej2, &gej2, &clast, &zero); /* gej2 = ki[k] * clast */
-
-            printf(123456);
-            printf(rustsecp256k1_v0_4_1_scalar_is_zero(&zero));
 
             rustsecp256k1_v0_4_1_gej_add_var(&R, &gej1, &gej2, NULL); /* R =  gej1 + gej2 */
 
@@ -536,6 +530,9 @@ int rustsecp256k1_v0_4_1_verify_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
             return 7;
         }
     };
+
+    int testres0 = zero.d[0] | zero.d[1] | zero.d[2] | zero.d[3] | zero.d[4] | zero.d[5] | zero.d[6] | zero.d[7];
+    printf(testres0);
 
     rustsecp256k1_v0_4_1_scalar_negate(&cSig, &cSig);
     rustsecp256k1_v0_4_1_scalar_add(&zero, &clast, &cSig);
