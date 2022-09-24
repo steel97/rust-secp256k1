@@ -425,6 +425,12 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
 
     rustsecp256k1_v0_4_1_rfc6979_hmac_sha256_finalize(&rng);
 
+    int verres = rustsecp256k1_v0_4_1_verify_mlsag(ctx,
+                                                   preimage, nCols, nRows,
+                                                   pk, ki, pc, ps);
+
+    printf(8888888);
+    printf(verres);
     return 0;
 }
 
@@ -530,9 +536,6 @@ int rustsecp256k1_v0_4_1_verify_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
             return 7;
         }
     };
-
-    int testres0 = zero.d[0] | zero.d[1] | zero.d[2] | zero.d[3] | zero.d[4] | zero.d[5] | zero.d[6] | zero.d[7];
-    printf(testres0);
 
     rustsecp256k1_v0_4_1_scalar_negate(&cSig, &cSig);
     rustsecp256k1_v0_4_1_scalar_add(&zero, &clast, &cSig);
