@@ -125,11 +125,6 @@ int rustsecp256k1_v0_4_1_prepare_mlsag(unsigned char *ebuf1, unsigned char *ebuf
             continue;
         };
         rustsecp256k1_v0_4_1_ge_set_gej(&c, &accj);
-        printf(882222);
-        printf(k);
-        printf(nCols);
-        printf(nIns);
-        printf(992222);
         rustsecp256k1_v0_4_1_eckey_pubkey_serialize(&c, &m[(k + nCols * nIns) * 33], &s, 1);
         /* pedersen_commitment_save(&m[(k+nCols*nIns)*33], &c); */
     };
@@ -283,26 +278,16 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
         } while (overflow || rustsecp256k1_v0_4_1_scalar_is_zero(&alpha[k]));
 
         if (!rustsecp256k1_v0_4_1_ec_pubkey_create(ctx, &pubkey, tmp)) /* G * alpha[col] */
-        {
-            printf(7777);
             return 1;
-        }
-
         clen = 33; /* must be set */
         if (!rustsecp256k1_v0_4_1_ec_pubkey_serialize(ctx, tmp, &clen, &pubkey, SECP256K1_EC_COMPRESSED) || clen != 33)
-        {
-            printf(6666);
             return 1;
-        }
 
         rustsecp256k1_v0_4_1_sha256_write(&sha256_m, &pk[(index + k * nCols) * 33], 33); /* pk_ind[col] */
         rustsecp256k1_v0_4_1_sha256_write(&sha256_m, tmp, 33);                           /* G * alpha[col] */
 
         if (0 != hash_to_curve(&ge1, &pk[(index + k * nCols) * 33], 33)) /* H(pk_ind[col]) */
-        {
-            printf(5555);
             return 1;
-        }
 
         rustsecp256k1_v0_4_1_gej_set_ge(&gej1, &ge1);
         rustsecp256k1_v0_4_1_ecmult(&ctx->ecmult_ctx, &gej2, &gej1, &alpha[k],
@@ -314,10 +299,7 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
 
         rustsecp256k1_v0_4_1_scalar_set_b32(&s, sk[k], &overflow);
         if (overflow || rustsecp256k1_v0_4_1_scalar_is_zero(&s))
-        {
-            printf(4444);
             return 1;
-        }
         rustsecp256k1_v0_4_1_ecmult(&ctx->ecmult_ctx, &gej2, &gej1, &s, &zero); /* gej2 = H(pk_ind[col]) * sk_ind[col] */
         rustsecp256k1_v0_4_1_ge_set_gej(&ge1, &gej2);
         rustsecp256k1_v0_4_1_eckey_pubkey_serialize(&ge1, &ki[k * 33], &clen, 1);
@@ -332,16 +314,10 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
         } while (overflow || rustsecp256k1_v0_4_1_scalar_is_zero(&alpha[k]));
 
         if (!rustsecp256k1_v0_4_1_ec_pubkey_create(ctx, &pubkey, tmp)) /* G * alpha[col] */
-        {
-            printf(3333);
             return 1;
-        }
         clen = 33; /* must be set */
         if (!rustsecp256k1_v0_4_1_ec_pubkey_serialize(ctx, tmp, &clen, &pubkey, SECP256K1_EC_COMPRESSED) || clen != 33)
-        {
-            printf(2222);
             return 1;
-        }
 
         rustsecp256k1_v0_4_1_sha256_write(&sha256_m, &pk[(index + k * nCols) * 33], 33); /* pk_ind[col] */
         rustsecp256k1_v0_4_1_sha256_write(&sha256_m, tmp, 33);                           /* G * alpha[col] */
@@ -350,10 +326,7 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
     rustsecp256k1_v0_4_1_sha256_finalize(&sha256_m, tmp);
     rustsecp256k1_v0_4_1_scalar_set_b32(&clast, tmp, &overflow);
     if (overflow || rustsecp256k1_v0_4_1_scalar_is_zero(&clast))
-    {
-        printf(1111);
         return 1;
-    }
 
     i = (index + 1) % nCols;
 
@@ -375,30 +348,18 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
             memcpy(&ps[(i + k * nCols) * 32], tmp, 32);
 
             if (!rustsecp256k1_v0_4_1_eckey_pubkey_parse(&ge1, &pk[(i + k * nCols) * 33], 33))
-            {
-                printf(i);
-                printf(k);
-                printf(nCols);
-                printf(1000);
                 return 1;
-            }
             rustsecp256k1_v0_4_1_gej_set_ge(&gej1, &ge1);
             rustsecp256k1_v0_4_1_ecmult(&ctx->ecmult_ctx, &L, &gej1, &clast, &ss); /* L = G * ss + pk[k][i] * clast */
 
             /* R = H(pk[k][i]) * ss + ki[k] * clast */
             if (0 != hash_to_curve(&ge1, &pk[(i + k * nCols) * 33], 33)) /* H(pk[k][i]) */
-            {
-                printf(999);
                 return 1;
-            }
             rustsecp256k1_v0_4_1_gej_set_ge(&gej1, &ge1);
             rustsecp256k1_v0_4_1_ecmult(&ctx->ecmult_ctx, &gej1, &gej1, &ss, &zero); /* gej1 = H(pk[k][i]) * ss */
 
             if (!rustsecp256k1_v0_4_1_eckey_pubkey_parse(&ge1, &ki[k * 33], 33))
-            {
-                printf(998);
                 return 1;
-            }
             rustsecp256k1_v0_4_1_gej_set_ge(&gej2, &ge1);
             rustsecp256k1_v0_4_1_ecmult(&ctx->ecmult_ctx, &gej2, &gej2, &clast, &zero); /* gej2 = ki[k] * clast */
 
@@ -425,10 +386,7 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
 
             /* L = G * ss + pk[k][i] * clast */
             if (!rustsecp256k1_v0_4_1_eckey_pubkey_parse(&ge1, &pk[(i + k * nCols) * 33], 33))
-            {
-                printf(997);
                 return 1;
-            }
             rustsecp256k1_v0_4_1_gej_set_ge(&gej1, &ge1);
             rustsecp256k1_v0_4_1_ecmult(&ctx->ecmult_ctx, &L, &gej1, &clast, &ss);
 
@@ -441,10 +399,7 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
         rustsecp256k1_v0_4_1_sha256_finalize(&sha256_m, tmp);
         rustsecp256k1_v0_4_1_scalar_set_b32(&clast, tmp, &overflow);
         if (overflow || rustsecp256k1_v0_4_1_scalar_is_zero(&clast))
-        {
-            printf(996);
             return 1;
-        }
 
         i = (i + 1) % nCols;
 
@@ -458,10 +413,7 @@ int rustsecp256k1_v0_4_1_generate_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
 
         rustsecp256k1_v0_4_1_scalar_set_b32(&ss, sk[k], &overflow);
         if (overflow || rustsecp256k1_v0_4_1_scalar_is_zero(&ss))
-        {
-            printf(995);
             return 1;
-        }
 
         rustsecp256k1_v0_4_1_scalar_mul(&s, &clast, &ss);
 
