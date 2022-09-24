@@ -443,6 +443,9 @@ int rustsecp256k1_v0_4_1_verify_mlsag(const rustsecp256k1_v0_4_1_context *ctx,
 
     rustsecp256k1_v0_4_1_scalar_set_int(&zero, 0);
 
+    printf(12345);
+    printf(rustsecp256k1_v0_4_1_scalar_is_zero(&zero));
+
     rustsecp256k1_v0_4_1_scalar_set_b32(&clast, pc, &overflow);
     if (overflow || rustsecp256k1_v0_4_1_scalar_is_zero(&clast))
     {
