@@ -410,6 +410,12 @@ extern "C" {
                                          tweak: *const c_uchar)
                                          -> c_int;
 
+    #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_ec_pubkey_tweak_add")]
+    pub fn secp256k1_ec_pubkey_tweak_add_raw(cx: *const Context,
+                                                                              pk: *mut c_uchar,
+                                                                              tweak: *const c_uchar)
+                                                                              -> c_int;
+
     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_4_1_ec_pubkey_tweak_mul")]
     pub fn secp256k1_ec_pubkey_tweak_mul(cx: *const Context,
                                          pk: *mut PublicKey,
