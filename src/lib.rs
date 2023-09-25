@@ -117,7 +117,7 @@
 #![deny(non_snake_case)]
 #![deny(unused_mut)]
 #![warn(missing_docs)]
-#![cfg_attr(all(not(test), not(feature = "std")), no_std)]
+//#![cfg_attr(all(not(test), not(feature = "std")), no_std)]
 #![cfg_attr(all(test, feature = "unstable"), feature(test))]
 
 #[macro_use]
