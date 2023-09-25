@@ -218,7 +218,8 @@ int rustsecp256k1_v0_4_1_pedersen_blind_generator_blind_sum(const rustsecp256k1_
     {
         int overflow = 0;
         rustsecp256k1_v0_4_1_scalar addend;
-        rustsecp256k1_v0_4_1_scalar_set_u64(&addend, value[i]); /* s = v */
+        // rustsecp256k1_v0_4_1_scalar_set_u64(&addend, value[i]); /* s = v */
+        rustsecp256k1_v0_4_1_pedersen_scalar_set_u64(&addend, value[i]);
 
         rustsecp256k1_v0_4_1_scalar_set_b32(&tmp, generator_blind[i], &overflow);
         if (overflow == 1)
