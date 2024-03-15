@@ -14,6 +14,12 @@ readme = "README.md"
 build = "build.rs"
 links = "rustsecp256k1_v0_4_1"
 
+[profile.dev]
+codegen-units = 1
+
+[profile.release]
+codegen-units = 1
+
 # Should make docs.rs show all functions, even those behind non-default features
 [package.metadata.docs.rs]
 features = [ "recovery", "lowmemory" ]
